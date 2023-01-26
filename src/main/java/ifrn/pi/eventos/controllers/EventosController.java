@@ -3,14 +3,16 @@ package ifrn.pi.eventos.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import ifrn.pi.eventos.models.Convidado;
 import ifrn.pi.eventos.models.Evento;
 import ifrn.pi.eventos.repositories.ConvidadoRepository;
@@ -31,8 +33,12 @@ public class EventosController {
 	}
 
 	@PostMapping
-	public String adicionar(Evento evento) {
-
+	public String salvar(@Valid Evento evento, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return form(evento);
+		}
+		
 		System.out.println(evento);
 		er.save(evento);
 
@@ -92,7 +98,6 @@ public class EventosController {
 		if(opt.isEmpty()) {
 			md.setViewName("redirect:/eventos");
 			return md;
-			
 		}
 		
 		Evento evento = opt.get();
@@ -150,4 +155,5 @@ public class EventosController {
 		return "redirect:/eventos";
 		
 	}
+		
 }
