@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Evento {
 	
@@ -21,7 +23,7 @@ public class Evento {
 	private String nome;
 	@NotBlank
 	private String local;
-	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate data;
 	@NotNull
 	private LocalTime horario;

@@ -166,11 +166,9 @@ public class EventosController {
 		Optional<Convidado> opt = cr.findById(idConvidado);
 		
 		if(!opt.isEmpty()) {
-			Convidado convidado = opt.get();
 			
 		}
-		
-		return "redirect:/eventos/form";
+	
 	}
 		
 }
