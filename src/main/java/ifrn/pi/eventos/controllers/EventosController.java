@@ -107,7 +107,7 @@ public class EventosController {
 		Evento evento = opt.get();
 		md.setViewName("eventos/formEvento");
 		md.addObject("evento", evento);
-		
+		 
 		return md;
 		
 	}
@@ -160,15 +160,5 @@ public class EventosController {
 		
 	}
 	
-	@GetMapping("/{idEvento}/convidados/{idConvidado}/remover")
-	public String apagarEvento(@PathVariable Long idEvento, @PathVariable Long idConvidado) {
-		
-		Optional<Convidado> opt = cr.findById(idConvidado);
-		
-		if(!opt.isEmpty()) {
-			
-		}
-	
-	}
 		
 }
