@@ -77,10 +77,15 @@ public class EventosController {
 	}
 
 	@PostMapping("/{idEvento}")
-	public String salvarConvidado(@PathVariable Long idEvento, Convidado convidado) {
+	public String salvarConvidado(@PathVariable Long idEvento, @Valid Convidado convidado, BindingResult result) {
 
 		System.out.println("Id do evento: " + idEvento);
 		System.out.println(convidado);
+		
+		if(result.hasErrors()){
+			return "redirect:/eventos/detalhes";
+			
+		}
 
 		java.util.Optional<Evento> opt = er.findById(idEvento);
 		if (opt.isEmpty()) {
@@ -159,6 +164,8 @@ public class EventosController {
 		return "redirect:/eventos";
 		
 	}
+	
+	
 	
 		
 }
